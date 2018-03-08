@@ -1,13 +1,19 @@
-# Title
+# Tennis Scoring with Good Tests
 
-Description and/or link
+Problem originally taken from http://codingdojo.org/kata/Tennis/ copied here to `Tennis.md`
 
 ## Participants
 
-- Alice @alice_github_alias
-- Bob @bob_github_alias
-- Joe @Joe_github_alias
-- ...
+- Andre @tropxy
+- George @gshaikov
+- Greg @lutostag
+- Jan @janvincke
+- Luiz @luizcordeiro
+- Milton @me-sosa
+- Munteha @munyildiz
+- Pablo @scorphus
+- Patrick @proelke
+- Tiago @tiagofranzen
 
 ## +++
 
