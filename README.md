@@ -16,6 +16,14 @@ A repository for every Dojo practised at The Mobility House.
 - At the end of the Dojo, update `README.md` contents
 - Commit and push \o/
 
+## For users
+
+If we are doing a pairing dojo, please create a new branch for your team:
+
+`git checkout -b YYYY.MM.DD-harry-shirley-bob`
+
+commit and push at your leisure :)
+
 ## License
 
 Check [LICENSE](LICENSE) file for license rights and limitations (BSD-3-Clause).
