@@ -11,7 +11,7 @@ A repository for every Dojo practised at The Mobility House.
 ## Creating a new Dojo
 
 - Create a new directory using this pattern: `YYYY.MM.DD`
-- Copy `README_TPL.md` into the `YYYY.MM.DD/` as `README.md`
+- Copy `template/` to the `YYYY.MM.DD/`
 - Start hacking!
 - At the end of the Dojo, update `README.md` contents
 - Commit and push \o/
