@@ -27,7 +27,13 @@ def test_a_player_scores(play, expected_score):
     ([1, 1, 1, 1], 'Player 1 wins!!!'),
     ([2, 2, 2, 2], 'Player 2 wins!!!'),
     ([2, 2, 2, 1, 1, 1], 'Deuce'),
+    ([2, 2, 2, 1, 1, 1, 1, 2, 1, 2, 1, 2], 'Deuce'),
     ([2, 2, 2, 1, 1, 1, 1], 'Advantage player 1'),
+    ([2, 2, 2, 1, 1, 1, 1, 2, 1, 2, 1, 2, 1], 'Advantage player 1'),
+    ([2, 2, 2, 1, 1, 1, 1, 1], 'Player 1 wins!!!'),
+    ([2, 2, 2, 1, 1, 1, 2], 'Advantage player 2'),
+    ([2, 2, 2, 1, 1, 1, 1, 2, 1, 2, 1, 2, 2], 'Advantage player 2'),
+    ([2, 2, 2, 1, 1, 1, 2, 2], 'Player 2 wins!!!'),
 ])
 def test_multiple_scores(plays, expected_score):
     score = Score()

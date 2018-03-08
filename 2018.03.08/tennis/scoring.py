@@ -1,8 +1,4 @@
-
 class Score:
-    p1_score = 0
-    p2_score = 0
-
     score_names = {
         0: 'love',
         1: 'fifteen',
@@ -10,22 +6,41 @@ class Score:
         3: 'forty',
     }
 
-    advantage = None
+    def __init__(self, ):
+        self.score = [0, 0]
+        self.advantage = 0
+
+    def _set_advantage(self, player):
+        delta = [1, -1][player]
+        if abs(self.advantage) < 2:
+            self.advantage += delta
+
+    def _player_scores(self, player):
+        adversary = player ^ 1  # Bitwise exclusive or
+        if self.score[player] <= 3:
+            self.score[player] += 1
+        if self.score[player] + self.score[adversary] > 6:
+            self._set_advantage(player)
 
     def player_one_scores(self):
-        if self.p1_score < 4:
-            self.p1_score += 1
+        self._player_scores(0)
 
     def player_two_scores(self):
-        if self.p2_score < 4:
-            self.p2_score += 1
+        self._player_scores(1)
 
     def get_score(self):
-        if self.p1_score + self.p2_score >= 6:
-            return 'Deuce'
-        if self.p1_score > 3:
+        if self.score[0] + self.score[1] >= 6:
+            if self.advantage == 0:
+                return 'Deuce'
+            if self.advantage == 1:
+                return 'Advantage player 1'
+            if self.advantage == -1:
+                return 'Advantage player 2'
+        if self.score[0] > 3 or self.advantage == 2:
             return 'Player 1 wins!!!'
-        if self.p2_score > 3:
+        if self.score[1] > 3 or self.advantage == -2:
             return 'Player 2 wins!!!'
-        return '{p1} x {p2}'.format(p1=self.score_names[self.p1_score],
-                                    p2=self.score_names[self.p2_score])
+        return '{} x {}'.format(
+            self.score_names[self.score[0]],
+            self.score_names[self.score[1]],
+        )
