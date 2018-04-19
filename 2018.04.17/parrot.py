@@ -1,35 +1,42 @@
-from enum import Enum
+BASE_SPEED = 12.0
+NORWEGIAN_MAX_SPEED = 24.0
 
-class ParrotType(Enum):
-    EUROPEAN = 1
-    AFRICAN = 2
-    NORWEGIAN_BLUE = 3
 
-class Parrot:
-    def __init__(self, type, number_of_coconuts, voltage, nailed):
-        self.type = type
+class BaseParrot:
+    _load_factor = 9.0
+
+    def __init__(self, number_of_coconuts, voltage, nailed):
         self.number_of_coconuts = number_of_coconuts
         self.voltage = voltage
         self.nailed = nailed
 
     def speed(self):
-        if self.type == ParrotType.EUROPEAN:
-            return self._base_speed()
-        if self.type == ParrotType.AFRICAN:
-            return max(0, self._base_speed() - self._load_factor() * self.number_of_coconuts)
-        if self.type == ParrotType.NORWEGIAN_BLUE:
-            if self.nailed:
-                return 0
-            else:
-                return self._compute_base_speed_for_voltage(self.voltage)
+        raise NotImplementedError
 
-        raise ValueError("should be unreachable")
 
-    def _compute_base_speed_for_voltage(self, voltage):
-       return min([24.0, voltage * self._base_speed()])
+class EuropeanParrot(BaseParrot):
+    def speed(self):
+        return BASE_SPEED
 
-    def _load_factor(self):
-      return 9.0
 
-    def _base_speed(self):
-      return 12.0
+class AfricanParrot(BaseParrot):
+    def speed(self):
+        coconut_weight = self._load_factor * self.number_of_coconuts
+        return max(0, BASE_SPEED - coconut_weight)
+
+
+class NorwegianParrot(BaseParrot):
+    def speed(self):
+        if self.nailed:
+            return 0
+        return min(NORWEGIAN_MAX_SPEED, self.voltage * BASE_SPEED)
+
+
+def Parrot(class_, *args):
+    return class_(*args)
+
+
+class ParrotType:
+    EUROPEAN = EuropeanParrot
+    AFRICAN = AfricanParrot
+    NORWEGIAN_BLUE = NorwegianParrot
